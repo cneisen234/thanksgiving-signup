@@ -1,0 +1,245 @@
+@import "tailwindcss";
+
+:root {
+  /* ---- Thanksgiving tokens — warm harvest palette ----
+     Same design craft as the other sites (outlined cards, hard offset shadows,
+     chunky buttons, eyebrows), dressed for the holiday: cranberry leads, with
+     pumpkin, pine and gold support on a cream paper ground. */
+
+  /* Cranberry — the primary */
+  --cranberry: #9E2B2B;
+  --cranberry-deep: #7C1F1F;
+  --cranberry-soft: #F6DEDA;
+
+  /* Pumpkin / amber — the warm accent */
+  --pumpkin: #C9691E;
+  --pumpkin-deep: #A6520F;
+  --pumpkin-soft: #FBE6CF;
+
+  /* Gold — the harvest highlight */
+  --gold: #D9A520;
+  --gold-deep: #B2820E;
+  --gold-soft: #FBEEC4;
+
+  /* Pine / sage — the greenery */
+  --pine: #3C5A42;
+  --pine-deep: #2A4430;
+  --pine-soft: #D9E6D7;
+
+  /* Warm neutrals — cream paper ground */
+  --cream: #FBF4E6;          /* main page background */
+  --paper: #FFFCF4;          /* lighter alt surface + cards */
+  --charcoal: #2E2620;       /* warm near-black — headings + body */
+  --ash: #5C5247;            /* muted body text */
+  --stone: #8A7F71;          /* secondary text + labels */
+  --bone: #FBF6EA;           /* text on dark backgrounds */
+  --border: #E7D9BF;
+
+  --background: var(--cream);
+  --foreground: var(--charcoal);
+
+  /* style — shared with the family */
+  --radius: 16px;
+  --radius-field: 12px;
+  --radius-button: 9999px;
+  --shadow: 3px 3px 0 var(--charcoal);
+  --shadow-button: 2px 2px 0 var(--charcoal);
+
+  --font-body: var(--font-nunito);
+  --font-heading: var(--font-fraunces);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-display: var(--font-fraunces); /* warm serif headings */
+  --font-body: var(--font-nunito);      /* friendly body sans */
+}
+
+/* Tailwind v4 preflight drops the pointer cursor on buttons — put it back */
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-nunito), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-fraunces), ui-serif, Georgia, serif;
+  color: var(--charcoal);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+/* Small-caps eyebrow above section headings */
+.eyebrow {
+  font-family: var(--font-nunito), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--pumpkin-deep);
+}
+
+/* ---- Buttons ---- */
+.btn-pop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-nunito), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--bone);
+  background-color: var(--cranberry);
+  border: 2px solid var(--charcoal);
+  border-radius: 9999px;
+  padding: 0.8rem 1.9rem;
+  box-shadow: 4px 4px 0 var(--charcoal);
+  transition: transform 0.14s ease, box-shadow 0.14s ease, background-color 0.25s ease;
+}
+.btn-pop:hover {
+  background-color: var(--cranberry-deep);
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--charcoal);
+}
+.btn-pop:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--charcoal); }
+.btn-pop:disabled { opacity: 0.55; box-shadow: 2px 2px 0 var(--charcoal); transform: none; }
+
+/* ---- Cards ---- */
+.card-pop {
+  background-color: var(--paper);
+  border: 2px solid var(--charcoal);
+  border-radius: 1.25rem;
+  box-shadow: 5px 5px 0 rgba(158, 43, 43, 0.5);
+}
+.card-soft {
+  background-color: var(--paper);
+  border: 1.5px solid var(--border);
+  border-radius: 1.25rem;
+  box-shadow: 0 12px 28px -20px rgba(46, 38, 32, 0.4);
+}
+
+/* ---- Form fields ---- */
+.field {
+  width: 100%;
+  font-family: var(--font-nunito), sans-serif;
+  font-size: 1rem;
+  color: var(--charcoal);
+  background-color: var(--paper);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-field);
+  padding: 0.65rem 0.85rem;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.field:focus {
+  outline: none;
+  border-color: var(--cranberry);
+  box-shadow: 0 0 0 3px var(--cranberry-soft);
+}
+.field-label {
+  display: block;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ash);
+  margin-bottom: 0.35rem;
+}
+
+/* ---- Badges / chips ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-nunito), sans-serif;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--cranberry-deep);
+  background-color: var(--cranberry-soft);
+  border-radius: 9999px;
+  padding: 0.28rem 0.8rem;
+}
+.badge-pumpkin { color: var(--pumpkin-deep); background-color: var(--pumpkin-soft); }
+.badge-gold { color: var(--gold-deep); background-color: var(--gold-soft); }
+.badge-pine { color: var(--pine-deep); background-color: var(--pine-soft); }
+
+/* Remove (×) button on a list row — quiet until hovered */
+.delete-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  flex: none;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: var(--stone);
+  background-color: transparent;
+  border: 1.5px solid var(--border);
+  border-radius: 9999px;
+  transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+}
+.delete-btn:hover:not(:disabled) {
+  color: var(--bone);
+  background-color: var(--cranberry);
+  border-color: var(--cranberry-deep);
+}
+.delete-btn:disabled { opacity: 0.5; }
+
+/* Count pill next to a category heading */
+.count-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.6rem;
+  height: 1.6rem;
+  padding: 0 0.5rem;
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--charcoal);
+  background-color: var(--gold-soft);
+  border: 1.5px solid var(--gold-deep);
+  border-radius: 9999px;
+}
+
+/* Divider with a center leaf */
+.divider-leaf {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: var(--pine);
+}
+.divider-leaf::before,
+.divider-leaf::after {
+  content: "";
+  height: 2px;
+  width: 3.5rem;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+}
+
+/* iOS: keep focused controls at 16px so Safari doesn't zoom the page */
+@media (pointer: coarse) {
+  input, select, textarea { font-size: 16px !important; }
+}
+
+/* ---- Entrance animation ---- */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up { animation: fadeInUp 0.5s ease-out forwards; opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-up { animation: none; opacity: 1; }
+}
+
+/* reCAPTCHA's floating badge covers the page; we show Google's notice instead
+   (components/RecaptchaNote.tsx), which Google allows. */
+.grecaptcha-badge { visibility: hidden; }
